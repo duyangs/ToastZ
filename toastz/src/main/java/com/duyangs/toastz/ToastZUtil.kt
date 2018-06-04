@@ -10,20 +10,13 @@ import android.support.annotation.NonNull
 import android.view.View
 
 /**
- * This file is part of Toasty.
- * 
- * Toasty is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * Toasty is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with Toasty.  If not, see <http://www.gnu.org/licenses/>.
+ * <p>Project:ToastZ</p>
+ * <p>Package:com.duyangs.toastz</p>
+ * <p>Description:tool class</p>
+ * <p>Company:</p>
+ *
+ * @author duyangs
+ * @date 2018/06/04
  */
 object ToastZUtil {
 

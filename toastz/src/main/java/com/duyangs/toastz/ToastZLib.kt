@@ -8,11 +8,11 @@ import android.support.annotation.NonNull
 /**
  * <p>Project:ToastZ</p>
  * <p>Package:com.duyangs.toastz</p>
- * <p>Description:</p>
+ * <p>Description:Initialization class</p>
  * <p>Company:</p>
  *
  * @author duyangs
- * @date 2017/04/19 0019
+ * @date 2018/06/04
  */
 object ToastZLib {
 

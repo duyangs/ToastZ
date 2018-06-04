@@ -7,7 +7,7 @@ import android.view.Gravity
 
 
 /**
- * "" ToastZ
+ * "Constants" ToastZ
  * create by DuYang
  * e-mail:duyangs1994@gmail.com
  * update time 2018/6/1.

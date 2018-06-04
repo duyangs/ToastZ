@@ -2,13 +2,9 @@ package com.duyangs.toastz
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.annotation.CheckResult
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.annotation.NonNull
+import android.support.annotation.*
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -18,13 +14,13 @@ import android.widget.TextView
 import android.widget.Toast
 
 /**
- * <p>Project:BaseLibDemo</p>
- * <p>Package:com.duyangs.baselib.util</p>
- * <p>Description: Toast 分装工具类</p>
+ * <p>Project:ToastZ</p>
+ * <p>Package:com.duyangs.toastz</p>
+ * <p>Description: ToastZ</p>
  * <p>Company:</p>
  *
  * @author duyangs
- * @date 2017/04/21 0021
+ * @date 2018/06/04
  */
 @SuppressLint("InflateParams", "StaticFieldLeak")
 object ToastZ {
@@ -50,101 +46,127 @@ object ToastZ {
 
     private var tintIcon: Boolean = ToastZConstant.tintIcon
 
-    val TYPE_ERROR: Int = 1001
-    val TYPE_INFO: Int = 1002
-    val TYPE_SUCCESS: Int = 1003
-    val TYPE_WARNING: Int = 1004
-
     private var mToast: Toast? = null
 
     init {
         // avoiding instantiation
     }
 
-    fun normal(msg: Any) {
+    fun normal(@NonNull msg: Any) {
         normal(msg, tGravity)
     }
 
-    fun normal(msg: Any, gravity: Int) {
+    fun normal(@NonNull msg: Any, gravity: Int) {
         normal(msg, gravity, Toast.LENGTH_SHORT)
     }
 
-    fun normal(msg: Any, gravity: Int, duration: Int) {
+    fun normal(@NonNull msg: Any, gravity: Int, duration: Int) {
         normal(msg, gravity, duration, null)
     }
 
-    fun normal(msg: Any, gravity: Int, duration: Int, icon: Drawable?) {
+    fun normal(@NonNull msg: Any, gravity: Int, duration: Int, icon: Drawable?) {
         normal(msg, gravity, duration, icon, icon != null)
     }
 
-    fun normal(msg: Any, gravity: Int, duration: Int, icon: Drawable?, withIcon: Boolean) {
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param icon Icon of Toast, only Drawable
+     * @param withIcon Whether to show Toast icon,true or false.
+     */
+    fun normal(@NonNull msg: Any, gravity: Int, duration: Int, icon: Drawable?, withIcon: Boolean) {
         custom(msg, gravity, icon, tNormalColor, duration, withIcon, true)
     }
 
-    fun success(msg: Any) {
+    fun success(@NonNull msg: Any) {
         success(msg, tGravity)
     }
 
-    fun success(msg: Any, gravity: Int) {
+    fun success(@NonNull msg: Any, gravity: Int) {
         success(msg, gravity, Toast.LENGTH_SHORT)
     }
 
-    fun success(msg: Any, gravity: Int, duration: Int) {
+    fun success(@NonNull msg: Any, gravity: Int, duration: Int) {
         success(msg, gravity, duration, true)
     }
 
-    fun success(msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param withIcon Whether to show Toast icon,true or false.
+     */
+    fun success(@NonNull msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
         custom(msg, gravity, ToastZUtil.getDrawable(ToastZLib.getContext(), R.drawable.ic_check_white_48dp),
                 tSuccessColor, duration, withIcon, true)
     }
 
-    fun info(msg: Any) {
+    fun info(@NonNull msg: Any) {
         info(msg, tGravity)
     }
 
-    fun info(msg: Any, gravity: Int) {
+    fun info(@NonNull msg: Any, gravity: Int) {
         info(msg, gravity, Toast.LENGTH_SHORT)
     }
 
-    fun info(msg: Any, gravity: Int, duration: Int) {
+    fun info(@NonNull msg: Any, gravity: Int, duration: Int) {
         info(msg, gravity, duration, true)
     }
 
-    fun info(msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param withIcon Whether to show Toast icon,true or false.
+     */
+    fun info(@NonNull msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
         custom(msg, gravity, ToastZUtil.getDrawable(ToastZLib.getContext(), R.drawable.ic_info_outline_white_48dp),
                 tInfoColor, duration, withIcon, true)
     }
 
-    fun warning(msg: Any) {
+    fun warning(@NonNull msg: Any) {
         warning(msg, tGravity)
     }
 
-    fun warning(msg: Any, gravity: Int) {
+    fun warning(@NonNull msg: Any, gravity: Int) {
         warning(msg, gravity, Toast.LENGTH_SHORT)
     }
 
-    fun warning(msg: Any, gravity: Int, duration: Int) {
+    fun warning(@NonNull msg: Any, gravity: Int, duration: Int) {
         warning(msg, gravity, duration, true)
     }
 
-    fun warning(msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param withIcon Whether to show Toast icon,true or false.
+     */
+    fun warning(@NonNull msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
         custom(msg, gravity, ToastZUtil.getDrawable(ToastZLib.getContext(), R.drawable.ic_error_outline_white_48dp),
                 tWarningColor, duration, withIcon, true)
     }
 
-    fun error(msg: Any) {
+    fun error(@NonNull msg: Any) {
         error(msg, tGravity)
     }
 
-    fun error(msg: Any, gravity: Int) {
+    fun error(@NonNull msg: Any, gravity: Int) {
         error(msg, gravity, Toast.LENGTH_SHORT)
     }
 
-    fun error(msg: Any, gravity: Int, duration: Int) {
+    fun error(@NonNull msg: Any, gravity: Int, duration: Int) {
         error(msg, gravity, duration, true)
     }
 
-    fun error(msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param withIcon Whether to show Toast icon,true or false.
+     */
+    fun error(@NonNull msg: Any, gravity: Int, duration: Int, withIcon: Boolean) {
         custom(msg, gravity, ToastZUtil.getDrawable(ToastZLib.getContext(), R.drawable.ic_clear_white_48dp),
                 tErrorColor, duration, withIcon, true)
     }
@@ -154,13 +176,26 @@ object ToastZ {
         custom(msg, tGravity, icon, tintColor, duration, true, false)
     }
 
-    fun custom(@NonNull msg: Any, @DrawableRes icon: Drawable, @ColorInt tintColor: Int, duration: Int, withIcon: Boolean) {
-        custom(msg, tGravity, icon, tintColor, duration, withIcon, false)
+    fun custom(@NonNull msg: Any, gravity: Int, @DrawableRes icon: Drawable, @ColorInt tintColor: Int, duration: Int) {
+        custom(msg, gravity, icon, tintColor, duration, true, false)
     }
 
-    fun custom(@NonNull msg: Any, @DrawableRes iconRes: Int, @ColorInt tintColor: Int, duration: Int,
+    fun custom(@NonNull msg: Any, gravity: Int, @DrawableRes icon: Drawable, @ColorInt tintColor: Int, duration: Int, withIcon: Boolean) {
+        custom(msg, gravity, icon, tintColor, duration, withIcon, false)
+    }
+
+    /**
+     * @param msg Any Need to show information，only StringRes or String.
+     * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
+     * @param iconRes Toast icon，only DrawableRes.
+     * @param tintColor Toast background color, only ColorInt.
+     * @param duration Toast display time, Toast.LENGTH_SHORT or Toast.LENGTH_LONG.
+     * @param withIcon Whether to show Toast icon,true or false.
+     * @param shouldTint Whether to modify the Toast background,true or false.
+     */
+    fun custom(@NonNull msg: Any, gravity: Int, @DrawableRes iconRes: Int, @ColorInt tintColor: Int, duration: Int,
                withIcon: Boolean, shouldTint: Boolean) {
-        custom(msg, tGravity, ToastZUtil.getDrawable(ToastZLib.getContext(), iconRes), tintColor, duration, withIcon, shouldTint)
+        custom(msg, gravity, ToastZUtil.getDrawable(ToastZLib.getContext(), iconRes), tintColor, duration, withIcon, shouldTint)
     }
 
 
@@ -182,10 +217,10 @@ object ToastZ {
 
         cancelToast()
 
-        var showMsg = ""
+        var showMsg: CharSequence = ""
         if (msg is Int) {
             showMsg = ToastZLib.getContext().getString(msg)
-        } else if (msg is String) {
+        } else if (msg is CharSequence) {
             showMsg = msg
         }
 
@@ -194,23 +229,25 @@ object ToastZ {
         val toastIcon: ImageView = toastLayout.findViewById(R.id.toast_icon)
         toastTextView = toastLayout.findViewById(R.id.toast_text)
 
-        var drawableFrame: Drawable? = null
-
-        drawableFrame = if (shouldTint)
+        val drawableFrame: Drawable? = if (shouldTint)
             ToastZUtil.tint9PatchDrawableFrame(ToastZLib.getContext(), tintColor)
         else
             ToastZUtil.getDrawable(ToastZLib.getContext(), R.drawable.toast_frame)
 
-        ToastZUtil.setBackground(toastLayout, drawableFrame)
+        ToastZUtil.setBackground(toastLayout, drawableFrame!!)
 
-        var tIcon: Drawable? = null
-        if (withIcon) {
-            if (icon == null)
-                throw IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true")
-            if (tintIcon) {
-                tIcon = ToastZUtil.tintIcon(icon, tDefaultTestColor)
+        val tIcon: Drawable?
+        if (tintIcon) {
+            if (withIcon) {
+                if (icon == null) {
+                    throw IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true")
+                } else {
+                    tIcon = ToastZUtil.tintIcon(icon, tDefaultTestColor)
+                    ToastZUtil.setBackground(toastIcon, tIcon)
+                }
+            } else {
+                toastIcon.visibility = View.GONE
             }
-            ToastZUtil.setBackground(toastIcon, tIcon!!)
         } else {
             toastIcon.visibility = View.GONE
         }
@@ -238,7 +275,7 @@ object ToastZ {
         return Config()
     }
 
-    class Config() {
+    class Config {
         private var cGravity: Int = ToastZConstant.tGravity
         @ColorInt
         private var cDefaultTestColor: Int = ToastZConstant.tDefaultTestColor
