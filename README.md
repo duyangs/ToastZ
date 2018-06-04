@@ -1,5 +1,6 @@
 # ToastZ
 
+[![](https://jitpack.io/v/duyangs/ToastZ.svg)](https://jitpack.io/#duyangs/ToastZ)
 [![](https://img.shields.io/badge/About%20Me-%E6%9D%9C%E6%B4%8B-lightgrey.svg)](https://www.ximimax.cn/)
 
 
