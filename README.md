@@ -1,8 +1,9 @@
 # ToastZ
 
+>ToastZ是一个可自定义的Toast，颇具个性，使用简洁而功能强大。优点请亲自体验，细节请阅读文档和源码
+
 [![](https://jitpack.io/v/duyangs/ToastZ.svg)](https://jitpack.io/#duyangs/ToastZ)
 [![](https://img.shields.io/badge/About%20Me-%E6%9D%9C%E6%B4%8B-lightgrey.svg)](https://www.ximimax.cn/)
-
 
 <h2>Pictures show</h2>
 <div >   
