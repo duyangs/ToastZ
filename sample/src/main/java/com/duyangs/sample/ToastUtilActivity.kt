@@ -26,11 +26,12 @@ class ToastUtilActivity : AppCompatActivity() {
     fun onClick(view: View) {
         when(view.id){
             R.id.normal -> ToastZ.normal("normal")
-            R.id.success -> ToastZ.success("success")
+            R.id.success -> ToastZ.success(R.string.success)
             R.id.warning -> ToastZ.warning("warning")
             R.id.error -> ToastZ.error("error")
             R.id.ac_toast_cancel -> ToastZ.cancelToast()
         }
     }
+
 }
 

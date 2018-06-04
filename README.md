@@ -1,6 +1,6 @@
 # ToastZ
 
-**The initialization stage is currently to be perfected**
+[![](https://img.shields.io/badge/About%20Me-%E6%9D%9C%E6%B4%8B-lightgrey.svg)](https://www.ximimax.cn/)
 
 
 <h2>Pictures show</h2>

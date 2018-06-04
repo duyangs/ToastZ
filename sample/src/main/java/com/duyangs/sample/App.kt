@@ -21,19 +21,6 @@ class App : Application() {
 
         ToastZLib.init(this)
 
-        /*
-        ToastZ.with().setGravity(Gravity.TOP)//设置Toast显示位置， Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
-                .setSuccessColor(Color.parseColor("#909090"))//设置“成功”模式下 Toast背景颜色,@ColorInt
-                .setInfoColor(Color.parseColor("#909090"))//设置“提示”模式下 Toast背景颜色,@ColorInt
-                .setWarningColor(Color.parseColor("#909090"))//设置“警告”模式下 Toast背景颜色,@ColorInt
-                .setErrorColor(Color.parseColor("#909090"))//设置“错误”模式下 Toast背景颜色,@ColorInt
-                .setTextSize(16)//设置Toast文字大小，单位:sp
-                .setTextColor(Color.parseColor("#FFFFFF"))//设置Toast文字颜色，@ColorInt
-                .setToastTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL))//设置Toast字体，Typeface
-                .tintIcon(true)//设置是否显示Toast Icon，true or false
-                .apply()
-                */
-
         ToastZ.with().setGravity(Gravity.TOP)//Set the Toast display position， Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
                 .setSuccessColor(Color.parseColor("#909090"))//Set“Success”mode the Toast background color,@ColorInt
                 .setInfoColor(Color.parseColor("#909090"))//Set“Info”mode the Toast background color,@ColorInt
