@@ -29,11 +29,11 @@ object ToastZUtil {
         return tintIcon(getDrawable(context, R.drawable.toast_frame), tintColor)
     }
 
-    fun setBackground(@NonNull view: View, drawable: Drawable) {
+    fun setBackground(view: View, drawable: Drawable) {
         view.background = drawable
     }
 
-    fun getDrawable(@NonNull context: Context, @DrawableRes id: Int): Drawable {
+    fun getDrawable(context: Context, @DrawableRes id: Int): Drawable {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             context.getDrawable(id)
         else

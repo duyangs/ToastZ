@@ -23,7 +23,7 @@ object ToastZLib {
      *
      * @param context 上下文
      */
-    fun init(@NonNull context : Context ) {
+    fun init(context : Context ) {
         mContext = context.applicationContext
     }
 
