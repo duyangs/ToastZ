@@ -1,5 +1,7 @@
 # ToastZ
 
+![](image/ToastZLOGO.jpg)
+
 >ToastZ is a customizable Toast. It is quite individual, concise and powerful. Please read the document and source code for details.
 
 [![](https://jitpack.io/v/duyangs/ToastZ.svg)](https://jitpack.io/#duyangs/ToastZ)
