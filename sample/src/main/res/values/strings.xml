@@ -2,6 +2,7 @@
     <string name="app_name">ToastZ</string>
     <string name="normal">normal</string>
     <string name="success">success</string>
+    <string name="info">info</string>
     <string name="warning">warning</string>
     <string name="error">error</string>
     <string name="cancel">cancel</string>

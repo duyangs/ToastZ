@@ -2,7 +2,7 @@ package com.duyangs.sample
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.duyangs.toastz.ToastZ
 
@@ -27,6 +27,7 @@ class ToastUtilActivity : AppCompatActivity() {
         when(view.id){
             R.id.normal -> ToastZ.normal("normal")
             R.id.success -> ToastZ.success(R.string.success)
+            R.id.info -> ToastZ.info("info")
             R.id.warning -> ToastZ.warning("warning")
             R.id.error -> ToastZ.error("error")
             R.id.ac_toast_cancel -> ToastZ.cancelToast()

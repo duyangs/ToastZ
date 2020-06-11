@@ -13,25 +13,26 @@
     <Button
         android:id="@+id/success"
         style="@style/MainTextStyle"
-        android:text="@string/success"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/success"/>
+
+    <Button
+        android:id="@+id/info"
+        style="@style/MainTextStyle"
+        android:text="@string/info"/>
 
     <Button
         android:id="@+id/warning"
         style="@style/MainTextStyle"
-        android:text="@string/warning"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/warning"/>
 
     <Button
         android:id="@+id/error"
         style="@style/MainTextStyle"
-        android:text="@string/error"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/error"/>
 
     <Button
         android:id="@+id/ac_toast_cancel"
         style="@style/MainTextStyle"
-        android:text="@string/cancel"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/cancel"/>
 
 </LinearLayout>

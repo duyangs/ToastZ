@@ -2,7 +2,7 @@ package com.duyangs.toastz
 
 import android.graphics.Color
 import android.graphics.Typeface
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.view.Gravity
 
 
@@ -16,7 +16,7 @@ object ToastZConstant{
     const val tGravity: Int = Gravity.CENTER
 
     @ColorInt
-    val tDefaultTestColor: Int = Color.parseColor("#FFFFFF")
+    val tDefaultTextColor: Int = Color.parseColor("#FFFFFF")
     @ColorInt
     val tErrorColor: Int = Color.parseColor("#909090")
     @ColorInt
