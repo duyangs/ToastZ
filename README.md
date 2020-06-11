@@ -7,7 +7,7 @@
 
 [![](https://img.shields.io/badge/LICENSE-Apache%20License%202.0-red.svg)](https://github.com/duyangs/ToastZ/blob/master/LICENSE)
 [![](https://jitpack.io/v/duyangs/ToastZ.svg)](https://jitpack.io/#duyangs/ToastZ)
-[![](https://img.shields.io/badge/About%20Me-%E6%9D%9C%E6%B4%8B-lightgrey.svg)](https://www.ximimax.cn/)
+[![](https://img.shields.io/badge/About%20Me-duyangs-lightgrey.svg)]()
 
 <h2>Pictures show</h2>
 <div >   
