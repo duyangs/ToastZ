@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-//apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -38,12 +37,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-//publish {
-//    userOrg = 'duyangs'
-//    groupId = 'com.duyangs'
-//    artifactId = 'toastz'
-//    publishVersion = '0.0.1'
-//    desc = ' Toast with personality '
-//    website = 'https://github.com/duyangs/ToastZ'
-//}
