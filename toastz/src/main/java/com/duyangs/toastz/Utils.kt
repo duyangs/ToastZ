@@ -37,22 +37,25 @@ fun tintIcon(drawable: Drawable?, @ColorInt tintColor: Int): Drawable? {
     return drawable
 }
 
-fun tint9PatchDrawableFrame(@ColorInt tintColor: Int?): Drawable? {
+fun tint9PatchDrawableFrame(@DrawableRes toastFrameResId: Int,@ColorInt tintColor: Int?): Drawable? {
     if (tintColor == null) return null
-    return tintIcon(getDrawable(R.drawable.toast_frame), tintColor)
+    return tintIcon(getDrawable(toastFrameResId), tintColor)
 }
 
 fun setBackground(view: View, drawable: Drawable?) {
     view.background = drawable
 }
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun getDrawable(@DrawableRes id: Int?) = if (id == null) null else ToastZ.getContext().getDrawable(id)
 
 fun getString(@StringRes resId: Int) = ToastZ.getContext().getString(resId)
 
-fun getYOffset(gravity: Int): Int = if (gravity == Gravity.CENTER) 0 else 200
+fun getYOffset(gravity: Int, yOffset: Int): Int = if (gravity == Gravity.CENTER) 0 else yOffset
 
-fun getDrawableFrame(shouldTint: Boolean, @ColorInt tintColor: Int): Drawable? = if (shouldTint) tint9PatchDrawableFrame(tintColor) else getDrawable(R.drawable.toast_frame)
+fun getDrawableFrame(shouldTint: Boolean, @ColorInt tintColor: Int, @DrawableRes toastFrameResId: Int): Drawable? {
+    return if (shouldTint) tint9PatchDrawableFrame(toastFrameResId,tintColor) else getDrawable(toastFrameResId)
+}
 
 fun msgFormat(msg: Any): CharSequence = when (msg) {
     is Int -> getString(msg)

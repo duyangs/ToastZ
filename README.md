@@ -1,5 +1,7 @@
 
-![](image/ToastZLOGO.jpg)
+<div >   
+<img src="image/ToastZLOGO.jpg" width = "300" height = "150" alt="ToastUtil" align=center />
+</div>
 
 # ToastZ
 
