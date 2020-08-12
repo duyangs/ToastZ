@@ -2,15 +2,14 @@ package com.duyangs.toastz
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import androidx.annotation.*
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.NonNull
 
 /**
  * <p>Project:ToastZ</p>
@@ -24,97 +23,96 @@ import android.widget.Toast
 @SuppressLint("InflateParams", "StaticFieldLeak")
 object ToastZ {
 
-    private var tGravity: Int = ToastZConstant.tGravity
-
-    @ColorInt
-    private var tDefaultTextColor: Int = ToastZConstant.tDefaultTextColor
-
-    @ColorInt
-    private var tErrorColor: Int = ToastZConstant.tErrorColor
-
-    @ColorInt
-    private var tInfoColor: Int = ToastZConstant.tInfoColor
-
-    @ColorInt
-    private var tSuccessColor: Int = ToastZConstant.tSuccessColor
-
-    @ColorInt
-    private var tWarningColor: Int = ToastZConstant.tWarningColor
-
-    @ColorInt
-    private var tNormalColor: Int = ToastZConstant.tNormalColor
-
-    private var currentTypeface: Typeface = ToastZConstant.currentTypeface
-    private var textSize: Int = ToastZConstant.textSize // in SP
-
-    private var tintIcon: Boolean = ToastZConstant.tintIcon
-
+    private var config = Config()
     private var mToast: Toast? = null
+    private var mContext: Context? = null
+
+    /**
+     * 初始化工具类
+     *
+     * @param context 上下文
+     */
+    fun init(context: Context, config: Config? = null) {
+        mContext = context.applicationContext
+        config?.let {
+            this.config = config
+        }
+    }
+
+    /**
+     * 获取ApplicationContext
+     *
+     * @return ApplicationContext
+     */
+    fun getContext(): Context {
+        if (mContext != null)
+            return mContext as Context
+        else
+            throw NullPointerException("u should init first")
+    }
 
     /**
      * Normal style
      */
-    fun normal(msg: Any, gravity: Int? = tGravity, duration: Int? = Toast.LENGTH_LONG) {
-        custom(msg, gravity, null, tNormalColor, duration)
+    fun normal(msg: Any, duration: Int? = null, gravity: Int? = null) {
+        custom(msg, gravity, null, config.getNormalColor(), duration)
     }
 
     /**
      * Success style
      */
-    fun success(msg: Any, gravity: Int? = tGravity, duration: Int? = Toast.LENGTH_LONG, withIcon: Boolean? = true) {
-        custom(msg, gravity, R.drawable.ic_check_white_48dp, tSuccessColor, duration, withIcon, true)
+    fun success(msg: Any, duration: Int? = null, gravity: Int? = null, withIcon: Boolean? = true) {
+        custom(msg, gravity, R.drawable.ic_check_white_48dp, config.getSuccessColor(), duration, withIcon, true)
     }
 
     /**
      * Info style
      */
-    fun info(msg: Any, gravity: Int? = tGravity, duration: Int? = Toast.LENGTH_LONG, withIcon: Boolean? = true) {
-        custom(msg, gravity, R.drawable.ic_info_outline_white_48dp, tInfoColor, duration, withIcon, true)
+    fun info(msg: Any, duration: Int? = null, gravity: Int? = null, withIcon: Boolean? = true) {
+        custom(msg, gravity, R.drawable.ic_info_outline_white_48dp, config.getInfoColor(), duration, withIcon, true)
     }
 
     /**
      * Warning style
      */
-    fun warning(msg: Any, gravity: Int? = tGravity, duration: Int? = Toast.LENGTH_LONG, withIcon: Boolean? = true) {
-        custom(msg, gravity, R.drawable.ic_error_outline_white_48dp, tWarningColor, duration, withIcon, true)
+    fun warning(msg: Any, duration: Int? = null, gravity: Int? = null, withIcon: Boolean? = true) {
+        custom(msg, gravity, R.drawable.ic_error_outline_white_48dp, config.getWarningColor(), duration, withIcon, true)
     }
 
     /**
      * Error style
      */
-    fun error(msg: Any, gravity: Int? = tGravity, duration: Int? = Toast.LENGTH_LONG, withIcon: Boolean? = true) {
-        custom(msg, gravity, R.drawable.ic_clear_white_48dp, tErrorColor, duration, withIcon, true)
+    fun error(msg: Any, duration: Int? = null, gravity: Int? = null, withIcon: Boolean? = true) {
+        custom(msg, gravity, R.drawable.ic_clear_white_48dp, config.getErrorColor(), duration, withIcon, true)
     }
 
     /**
-     * Custom style
+     * Custom style 自定义
      */
-    fun custom(msg: Any, gravity: Int? = tGravity,
-               @DrawableRes iconRes: Int? = null,
-               @ColorInt tintColor: Int? = tNormalColor,
-               duration: Int? = Toast.LENGTH_SHORT,
-               withIcon: Boolean? = false,
-               shouldTint: Boolean? = false) {
-        toast(msg, gravity ?: tGravity,
+    fun custom(msg: Any, gravity: Int? = null,
+            @DrawableRes iconRes: Int? = null,
+            @ColorInt tintColor: Int? = null,
+            duration: Int? = null,
+            withIcon: Boolean? = false,
+            shouldTint: Boolean? = false) {
+
+        toast(msg, gravity ?: config.getGravity(),
                 getDrawable(iconRes),
-                tintColor ?: tNormalColor,
-                duration ?: Toast.LENGTH_SHORT,
+                tintColor ?: config.getNormalColor(),
+                duration ?: Toast.LENGTH_LONG,
                 withIcon ?: false,
                 shouldTint ?: false)
     }
 
-
     /**
      * Cancel toast
      */
-    fun cancelToast() {
-        if (mToast != null) {
-            mToast!!.cancel()
+    fun cancel() {
+        mToast?.let {
+            it.cancel()
             mToast = null
         }
     }
-
-    private var toastTextView: TextView? = null
 
     /**
      * @param msg Any Need to show information，only StringRes or String.
@@ -129,172 +127,48 @@ object ToastZ {
                       @ColorInt tintColor: Int, duration: Int,
                       withIcon: Boolean, shouldTint: Boolean) {
 
-        cancelToast()
+        cancel()
 
-        var showMsg: CharSequence = ""
-        if (msg is Int) {
-            showMsg = getString(msg)
-        } else if (msg is CharSequence) {
-            showMsg = msg
+        fun tintIconVerify(): Boolean = (config.getTintIcon() and withIcon and (icon != null))
+
+        fun layoutSetBackground(toastLayout: View) {
+            setBackground(toastLayout, getDrawableFrame(shouldTint, tintColor))
         }
 
-        mToast = Toast.makeText(ToastZLib.getContext(), showMsg, duration)
-        val toastLayout: View = (ToastZLib.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.toast_layout, null)
-        val toastIcon: ImageView = toastLayout.findViewById(R.id.toast_icon)
-        toastTextView = toastLayout.findViewById(R.id.toast_text)
-
-        val drawableFrame: Drawable? = if (shouldTint)
-            tint9PatchDrawableFrame(tintColor)
-        else
-            getDrawable(R.drawable.toast_frame)
-
-        setBackground(toastLayout, drawableFrame)
-
-        val tIcon: Drawable?
-        if (tintIcon) {
-            if (withIcon) {
-                if (icon == null) {
-                    throw IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true")
-                } else {
-                    tIcon = tintIcon(icon, tDefaultTextColor)
-                    setBackground(toastIcon, tIcon)
-                }
+        fun tintIconSetBackground(toastIcon: ImageView) {
+            if (tintIconVerify()) {
+                val tIcon = tintIcon(icon, config.getDefaultTestColor())
+                setBackground(toastIcon, tIcon)
             } else {
                 toastIcon.visibility = View.GONE
             }
-        } else {
-            toastIcon.visibility = View.GONE
         }
 
-        toastTextView?.let {
-            it.text = showMsg
-            it.setTextColor(tDefaultTextColor)
-            it.typeface = currentTypeface
-            it.textSize = textSize.toFloat()
+        fun setTextView(toastTextView: TextView, msg: CharSequence) {
+            toastTextView.let {
+                it.text = msg
+                it.setTextColor(config.getDefaultTestColor())
+                it.typeface = config.getTypeface()
+                it.textSize = config.getTextSize().toFloat()
+            }
         }
 
-        mToast?.let {
-            it.view = toastLayout
-            it.setGravity(if (gravity == -1) {
-                tGravity
-            } else {
-                gravity
-            }, 0, if (gravity == Gravity.CENTER) {
-                0
-            } else {
-                200
-            })
-
-            it.show()
-        }
-    }
-
-    fun with(): Config {
-        return Config()
-    }
-
-    class Config {
-        private var cGravity: Int = ToastZConstant.tGravity
-
-        @ColorInt
-        private var cDefaultTestColor: Int = ToastZConstant.tDefaultTextColor
-
-        @ColorInt
-        private var cErrorColor: Int = ToastZConstant.tErrorColor
-
-        @ColorInt
-        private var cInfoColor: Int = ToastZConstant.tInfoColor
-
-        @ColorInt
-        private var cSuccessColor: Int = ToastZConstant.tSuccessColor
-
-        @ColorInt
-        private var cWarningColor: Int = ToastZConstant.tWarningColor
-
-        @ColorInt
-        private var cNormalColor: Int = ToastZConstant.tNormalColor
-
-        private var cTypeface: Typeface = ToastZConstant.currentTypeface
-        private var cTextSize: Int = ToastZConstant.textSize
-        private var cTintIcon: Boolean = ToastZConstant.tintIcon
-
-        fun reset() {
-            tGravity = ToastZConstant.tGravity
-            tDefaultTextColor = ToastZConstant.tDefaultTextColor
-            tErrorColor = ToastZConstant.tErrorColor
-            tInfoColor = ToastZConstant.tInfoColor
-            tSuccessColor = ToastZConstant.tSuccessColor
-            tWarningColor = ToastZConstant.tWarningColor
-            tNormalColor = ToastZConstant.tNormalColor
-            currentTypeface = ToastZConstant.currentTypeface
-            textSize = ToastZConstant.textSize
-            tintIcon = ToastZConstant.tintIcon
+        fun show(toastLayout: View) {
+            mToast?.let {
+                it.view = toastLayout
+                it.setGravity(gravity, 0, getYOffset(gravity))
+                it.show()
+            }
         }
 
-        fun setGravity(gravity: Int): Config {
-            cGravity = gravity
-            return this
-        }
+        val showMsg = msgFormat(msg)
+        val (toast, child) = loadToastLayout(showMsg, duration)
+        val (toastLayout, toastIcon, toastTextView) = child
+        mToast = toast
 
-        @CheckResult
-        fun setTextColor(@ColorInt textColor: Int): Config {
-            cDefaultTestColor = textColor
-            return this
-        }
-
-        @CheckResult
-        fun setErrorColor(@ColorInt errorColor: Int): Config {
-            cErrorColor = errorColor
-            return this
-        }
-
-        @CheckResult
-        fun setInfoColor(@ColorInt infoColor: Int): Config {
-            cInfoColor = infoColor
-            return this
-        }
-
-        @CheckResult
-        fun setSuccessColor(@ColorInt successColor: Int): Config {
-            cSuccessColor = successColor
-            return this
-        }
-
-        @CheckResult
-        fun setWarningColor(@ColorInt warningColor: Int): Config {
-            cWarningColor = warningColor
-            return this
-        }
-
-        @CheckResult
-        fun setToastTypeface(@NonNull typeface: Typeface): Config {
-            cTypeface = typeface
-            return this
-        }
-
-        @CheckResult
-        fun setTextSize(sizeInSp: Int): Config {
-            cTextSize = sizeInSp
-            return this
-        }
-
-        @CheckResult
-        fun tintIcon(tintIcon: Boolean): Config {
-            cTintIcon = tintIcon
-            return this
-        }
-
-        fun apply() {
-            tGravity = cGravity
-            tDefaultTextColor = cDefaultTestColor
-            tNormalColor = cNormalColor
-            tErrorColor = cErrorColor
-            tInfoColor = cInfoColor
-            tSuccessColor = cSuccessColor
-            tWarningColor = cWarningColor
-            currentTypeface = cTypeface
-            textSize = cTextSize
-            tintIcon = cTintIcon
-        }
+        layoutSetBackground(toastLayout)
+        tintIconSetBackground(toastIcon)
+        setTextView(toastTextView, showMsg)
+        show(toastLayout)
     }
 }

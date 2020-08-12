@@ -10,23 +10,22 @@ import android.view.Gravity
  * "Constants" ToastZ
  * create by DuYang
  * e-mail:duyangs1994@gmail.com
- * update time 2018/6/1.
+ * update time 2020/8/12.
  */
-object ToastZConstant{
-    const val tGravity: Int = Gravity.CENTER
-
+object Constants{
+    const val gravity: Int = Gravity.CENTER
     @ColorInt
-    val tDefaultTextColor: Int = Color.parseColor("#FFFFFF")
+    val defaultTextColor: Int = Color.parseColor("#FFFFFF")
     @ColorInt
-    val tErrorColor: Int = Color.parseColor("#909090")
+    val errorColor: Int = Color.parseColor("#909090")
     @ColorInt
-    val tInfoColor: Int = Color.parseColor("#909090")
+    val infoColor: Int = Color.parseColor("#909090")
     @ColorInt
-    val tSuccessColor: Int = Color.parseColor("#909090")
+    val successColor: Int = Color.parseColor("#909090")
     @ColorInt
-    val tWarningColor: Int = Color.parseColor("#909090")
+    val warningColor: Int = Color.parseColor("#909090")
     @ColorInt
-    val tNormalColor: Int = Color.parseColor("#909090")
+    val normalColor: Int = Color.parseColor("#909090")
 
     val currentTypeface: Typeface = Typeface.create("sans-serif-condensed", Typeface.NORMAL)
     const val textSize: Int = 16 // in SP

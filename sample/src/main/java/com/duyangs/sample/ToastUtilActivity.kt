@@ -30,7 +30,7 @@ class ToastUtilActivity : AppCompatActivity() {
             R.id.info -> ToastZ.info("info")
             R.id.warning -> ToastZ.warning("warning")
             R.id.error -> ToastZ.error("error")
-            R.id.ac_toast_cancel -> ToastZ.cancelToast()
+            R.id.ac_toast_cancel -> ToastZ.cancel()
         }
     }
 
