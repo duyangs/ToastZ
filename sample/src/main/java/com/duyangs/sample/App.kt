@@ -29,7 +29,9 @@ class App : Application() {
                 normalColor = Color.parseColor("#909090"),
                 typeface = Typeface.create("sans-serif-condensed", Typeface.NORMAL),
                 textSize = 16,
-                tintIcon = true)
+                tintIcon = true,
+                yOffset = 200,
+                toastFrameResId = R.drawable.toast_frame)
 
         ToastZ.init(this, config)
     }

@@ -90,11 +90,11 @@ object ToastZ {
      * Custom style 自定义
      */
     fun custom(msg: Any, gravity: Int? = null,
-            @DrawableRes iconRes: Int? = null,
-            @ColorInt tintColor: Int? = null,
-            duration: Int? = null,
-            withIcon: Boolean? = false,
-            shouldTint: Boolean? = false) {
+               @DrawableRes iconRes: Int? = null,
+               @ColorInt tintColor: Int? = null,
+               duration: Int? = null,
+               withIcon: Boolean? = false,
+               shouldTint: Boolean? = false) {
 
         toast(msg, gravity ?: config.getGravity(),
                 getDrawable(iconRes),
@@ -132,7 +132,7 @@ object ToastZ {
         fun tintIconVerify(): Boolean = (config.getTintIcon() and withIcon and (icon != null))
 
         fun layoutSetBackground(toastLayout: View) {
-            setBackground(toastLayout, getDrawableFrame(shouldTint, tintColor))
+            setBackground(toastLayout, getDrawableFrame(shouldTint, tintColor, config.getToastFrameResId()))
         }
 
         fun tintIconSetBackground(toastIcon: ImageView) {
@@ -156,7 +156,7 @@ object ToastZ {
         fun show(toastLayout: View) {
             mToast?.let {
                 it.view = toastLayout
-                it.setGravity(gravity, 0, getYOffset(gravity))
+                it.setGravity(gravity, 0, getYOffset(gravity, config.getYOffset()))
                 it.show()
             }
         }

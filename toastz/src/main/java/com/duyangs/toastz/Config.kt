@@ -2,6 +2,7 @@ package com.duyangs.toastz
 
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 
 /**
  * Project: ToastZ
@@ -20,7 +21,9 @@ data class Config(
         @ColorInt private var normalColor: Int? = Constants.normalColor,
         private var typeface: Typeface? = Constants.currentTypeface,
         private var textSize: Int? = Constants.textSize,
-        private var tintIcon: Boolean? = Constants.tintIcon
+        private var tintIcon: Boolean? = Constants.tintIcon,
+        private var yOffset: Int? = Constants.yOffset,
+        @DrawableRes private var toastFrameResId: Int? = Constants.toastFrameResId
 ) {
 
     fun getGravity(): Int = gravity ?: Constants.gravity
@@ -42,5 +45,9 @@ data class Config(
     fun getTextSize(): Int = textSize ?: Constants.textSize
 
     fun getTintIcon(): Boolean = tintIcon ?: Constants.tintIcon
+
+    fun getYOffset(): Int = yOffset ?: Constants.yOffset
+
+    fun getToastFrameResId(): Int = toastFrameResId ?: Constants.toastFrameResId
 
 }
