@@ -21,7 +21,7 @@ class App : Application() {
 
         val config = Config(
                 gravity = Gravity.TOP,
-                defaultTestColor = Color.parseColor("#FFFFFF"),
+                defaultTextColor = Color.parseColor("#FFFFFF"),
                 successColor = Color.parseColor("#909090"),
                 infoColor = Color.parseColor("#909090"),
                 warningColor = Color.parseColor("#909090"),

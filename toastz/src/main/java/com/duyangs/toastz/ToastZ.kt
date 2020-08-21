@@ -87,7 +87,7 @@ object ToastZ {
     }
 
     /**
-     * Custom style 自定义
+     * Custom style toast
      */
     fun custom(msg: Any, gravity: Int? = null,
                @DrawableRes iconRes: Int? = null,
@@ -115,6 +115,7 @@ object ToastZ {
     }
 
     /**
+     * toast create
      * @param msg Any Need to show information，only StringRes or String.
      * @param gravity Toast display position, Gravity.CENTER、Gravity.TOP or Gravity.BOTTOM.
      * @param icon Toast icon，only support Drawable.
@@ -137,7 +138,7 @@ object ToastZ {
 
         fun tintIconSetBackground(toastIcon: ImageView) {
             if (tintIconVerify()) {
-                val tIcon = tintIcon(icon, config.getDefaultTestColor())
+                val tIcon = tintIcon(icon, config.getDefaultTextColor())
                 setBackground(toastIcon, tIcon)
             } else {
                 toastIcon.visibility = View.GONE
@@ -147,7 +148,7 @@ object ToastZ {
         fun setTextView(toastTextView: TextView, msg: CharSequence) {
             toastTextView.let {
                 it.text = msg
-                it.setTextColor(config.getDefaultTestColor())
+                it.setTextColor(config.getDefaultTextColor())
                 it.typeface = config.getTypeface()
                 it.textSize = config.getTextSize().toFloat()
             }

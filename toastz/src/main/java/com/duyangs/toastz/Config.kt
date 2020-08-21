@@ -13,7 +13,7 @@ import androidx.annotation.DrawableRes
  */
 data class Config(
         private var gravity: Int? = Constants.gravity,
-        @ColorInt private var defaultTestColor: Int? = Constants.defaultTextColor,
+        @ColorInt private var defaultTextColor: Int? = Constants.defaultTextColor,
         @ColorInt private var errorColor: Int? = Constants.errorColor,
         @ColorInt private var infoColor: Int? = Constants.infoColor,
         @ColorInt private var successColor: Int? = Constants.successColor,
@@ -28,7 +28,7 @@ data class Config(
 
     fun getGravity(): Int = gravity ?: Constants.gravity
 
-    fun getDefaultTestColor(): Int = defaultTestColor ?: Constants.defaultTextColor
+    fun getDefaultTextColor(): Int = defaultTextColor ?: Constants.defaultTextColor
 
     fun getErrorColor(): Int = errorColor ?: Constants.errorColor
 
